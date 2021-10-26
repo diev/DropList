@@ -4,9 +4,9 @@
 [![GitHub Release]][releases]
 
 Drop files into this list and copy it to Clipboard.  
-Накидайте файлы из Explorer и сохраните список их в Clipboard.
+РќР°РєРёРґР°Р№С‚Рµ С„Р°Р№Р»С‹ РёР· Explorer Рё СЃРѕС…СЂР°РЅРёС‚Рµ СЃРїРёСЃРѕРє РёС… РІ Clipboard.
 
-![Рабочее окно приложения]
+![Р Р°Р±РѕС‡РµРµ РѕРєРЅРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ]
 
 ## Used Icons
 
@@ -16,7 +16,7 @@ Artist: [Oxygen Team]
 License: [GNU Lesser General Public License]  
 Commercial usage: Allowed
 
-## Системные требования
+## РЎРёСЃС‚РµРјРЅС‹Рµ С‚СЂРµР±РѕРІР°РЅРёСЏ
 
  * .NET Framework 4.8
  * .NET Framework 4.7.2
@@ -37,5 +37,5 @@ Licensed under the [Apache License, Version 2.0].
 [Build status]: https://ci.appveyor.com/api/projects/status/a45f6pot1x4cfvdr?svg=true
 [GitHub Release]: https://img.shields.io/github/release/diev/DropList.svg
 
-[Рабочее окно приложения]: docs/assets/images/droplist.png
+[Р Р°Р±РѕС‡РµРµ РѕРєРЅРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ]: docs/assets/images/droplist.png
 [Icon]: docs/assets/images/Actions-document-import-icon.png
