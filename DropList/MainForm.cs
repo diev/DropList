@@ -16,8 +16,6 @@
 #endregion
 
 using System;
-using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DropList
@@ -33,14 +31,7 @@ namespace DropList
         {
             //Извлекаем имя перетаскиваемого файла
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, true);
-
-            foreach (string file in files)
-            {
-                if (!FilelistBox.Items.Contains(file))
-                {
-                    FilelistBox.Items.Add(file);
-                }
-            }
+            ListMethods.SetListText(FilelistBox, files);
         }
 
         private void FilelistBox_DragEnter(object sender, DragEventArgs e)
@@ -81,7 +72,8 @@ namespace DropList
         {
             if (FilelistBox.Items.Count > 0)
             {
-                Clipboard.SetText(GetListText());
+                string text = ListMethods.GetListText(FilelistBox);
+                Clipboard.SetText(text);
             }
             else
             {
@@ -93,28 +85,8 @@ namespace DropList
         {
             if (FilelistBox.Items.Count > 0)
             {
-                var dialog = new SaveFileDialog
-                {
-                    Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
-                    FilterIndex = 1,
-                    DefaultExt = "txt"
-                };
-
-                string path = Properties.Settings.Default.SaveDirectory;
-
-                if (!string.IsNullOrEmpty(path))
-                {
-                    dialog.InitialDirectory = path;
-                }
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    string file = dialog.FileName;
-                    File.WriteAllText(file, GetListText());
-
-                    path = Path.GetDirectoryName(file);
-                    Properties.Settings.Default.SaveDirectory = path;
-                }
+                string text = ListMethods.GetListText(FilelistBox);
+                DialogMethods.SaveText(text);
             }
             else
             {
@@ -122,36 +94,12 @@ namespace DropList
             }
         }
 
-        private string GetListText()
-        {
-            var sb = new StringBuilder();
-
-            foreach (string s in FilelistBox.Items)
-            {
-                if (s.Contains(" "))
-                {
-                    sb.Append("\"").Append(s).AppendLine("\"");
-                }
-                else
-                {
-                    sb.AppendLine(s);
-                }
-            }
-
-            return sb.ToString();
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             PersistentWindow.Restore(this);
 
             string[] args = Environment.GetCommandLineArgs();
-
-            foreach (string s in args)
-            {
-                FilelistBox.Items.Add(s);
-            }
-
+            ListMethods.SetListText(FilelistBox, args);
             FilelistBox.Items.RemoveAt(0); // App's exe
         }
 

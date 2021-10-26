@@ -17,38 +17,37 @@
 
 using DropList.Properties;
 
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DropList
 {
-    static class PersistentWindow
+    public static class DialogMethods
     {
-        public static void Restore(Form form)
+        public static void SaveText(string text)
         {
-            var p = Settings.Default;
-
-            if (p.IsMaximized)
+            var dialog = new SaveFileDialog
             {
-                form.WindowState = FormWindowState.Maximized;
-            }
-            else if (Screen.AllScreens.Any(screen =>
-            screen.WorkingArea.IntersectsWith(p.WindowPosition)))
+                Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
+                FilterIndex = 1,
+                DefaultExt = "txt"
+            };
+
+            string path = Properties.Settings.Default.SaveDirectory;
+
+            if (!string.IsNullOrEmpty(path))
             {
-                form.StartPosition = FormStartPosition.Manual;
-                form.DesktopBounds = p.WindowPosition;
-                form.WindowState = FormWindowState.Normal;
+                dialog.InitialDirectory = path;
             }
-        }
 
-        public static void Save(Form form)
-        {
-            var p = Settings.Default;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string file = dialog.FileName;
+                File.WriteAllText(file, text);
 
-            p.IsMaximized = form.WindowState == FormWindowState.Maximized;
-            p.WindowPosition = form.DesktopBounds;
-
-            p.Save();
+                path = Path.GetDirectoryName(file);
+                Settings.Default.SaveDirectory = path;
+            }
         }
     }
 }

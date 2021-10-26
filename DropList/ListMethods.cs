@@ -15,40 +15,41 @@
 //------------------------------------------------------------------------------
 #endregion
 
-using DropList.Properties;
-
-using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace DropList
 {
-    static class PersistentWindow
+    public static class ListMethods
     {
-        public static void Restore(Form form)
+        public static void SetListText(ListBox box, string[] items)
         {
-            var p = Settings.Default;
-
-            if (p.IsMaximized)
+            foreach (string s in items)
             {
-                form.WindowState = FormWindowState.Maximized;
-            }
-            else if (Screen.AllScreens.Any(screen =>
-            screen.WorkingArea.IntersectsWith(p.WindowPosition)))
-            {
-                form.StartPosition = FormStartPosition.Manual;
-                form.DesktopBounds = p.WindowPosition;
-                form.WindowState = FormWindowState.Normal;
+                if (!box.Items.Contains(s))
+                {
+                    box.Items.Add(s);
+                }
             }
         }
 
-        public static void Save(Form form)
+        public static string GetListText(ListBox box)
         {
-            var p = Settings.Default;
+            var sb = new StringBuilder();
 
-            p.IsMaximized = form.WindowState == FormWindowState.Maximized;
-            p.WindowPosition = form.DesktopBounds;
+            foreach (string s in box.Items)
+            {
+                if (s.Contains(" "))
+                {
+                    sb.Append("\"").Append(s).AppendLine("\"");
+                }
+                else
+                {
+                    sb.AppendLine(s);
+                }
+            }
 
-            p.Save();
+            return sb.ToString();
         }
     }
 }
