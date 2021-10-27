@@ -3,8 +3,10 @@
 [![Build status]][appveyor]
 [![GitHub Release]][releases]
 
-Drop files into this list and copy it to Clipboard.  
-Накидайте файлы из Explorer и сохраните список их в Clipboard.
+Drop files from Windows Explorer into this list and copy it to Clipboard
+or to disk.  
+Накидайте нужные файлы из Проводника в окно программы и сохраните полученный
+список в Буфер обмена или на диск.
 
 ![Рабочее окно приложения]
 

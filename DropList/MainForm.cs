@@ -50,7 +50,7 @@ namespace DropList
             }
             else
             {
-                MessageBox.Show("Нечего очищать", Text);
+                MessageBox.Show("Нечего очищать", Program.Title);
             }
         }
 
@@ -64,7 +64,7 @@ namespace DropList
             }
             else
             {
-                MessageBox.Show("Выделите строку", Text);
+                MessageBox.Show("Выделите строку", Program.Title);
             }
         }
 
@@ -77,7 +77,7 @@ namespace DropList
             }
             else
             {
-                MessageBox.Show("Нечего копировать", Text);
+                MessageBox.Show("Нечего копировать", Program.Title);
             }
         }
 
@@ -90,8 +90,13 @@ namespace DropList
             }
             else
             {
-                MessageBox.Show("Нечего сохранять", Text);
+                MessageBox.Show("Нечего сохранять", Program.Title);
             }
+        }
+
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            DialogMethods.About();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

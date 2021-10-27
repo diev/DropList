@@ -35,6 +35,7 @@ namespace DropList
             this.CopyButton = new System.Windows.Forms.Button();
             this.DelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.AboutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FilelistBox
@@ -100,11 +101,24 @@ namespace DropList
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // AboutButton
+            // 
+            this.AboutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AboutButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.AboutButton.Location = new System.Drawing.Point(479, 128);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(93, 23);
+            this.AboutButton.TabIndex = 5;
+            this.AboutButton.Text = "О программе...";
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 161);
+            this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.DelButton);
             this.Controls.Add(this.CopyButton);
@@ -127,6 +141,7 @@ namespace DropList
         private System.Windows.Forms.Button CopyButton;
         private System.Windows.Forms.Button DelButton;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button AboutButton;
     }
 }
 

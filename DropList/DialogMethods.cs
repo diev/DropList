@@ -49,5 +49,12 @@ namespace DropList
                 Settings.Default.SaveDirectory = path;
             }
         }
+
+        public static void About()
+        {
+            string title = $"{Program.Title} v{Program.Version}";
+            string text = "Накидайте нужные файлы из Проводника в окно программы и сохраните полученный список в Буфер обмена или на диск.";
+            MessageBox.Show(text, title);
+        }
     }
 }
